@@ -25,3 +25,25 @@ async function generateSyntheticData(): Promise<Employee[]> {
     const response = await llm.invoke(prompt);
     return parser.parse(response.content as string);
 }
+
+//Create a summary for each employee
+async function createEmployeeSummary(employee: Employee): Promise<string> {
+    return new Promise((resolve) => {
+        const jobDetails = `${employee.job_details.job_title} in ${employee.job_details.department}`;
+        const skills = employee.skills.join(", ");
+        const performanceReviews = employee.performance_reviews
+            .map(
+                (review) => `Rated ${review.rating} on ${review.review_date} with comments: ${review.comments}`
+            )
+            .join(" ");
+
+        const basicInfo = `${employee.first_name} ${employee.last_name}, born on ${employee.date_of_birth}`;
+        const workLocation = `Works at ${employee.work_location.nearest_office}, Remote: ${employee.work_location.is_remote}`;
+        const notes = employee.notes;
+
+        const summary = `${basicInfo}. Job: ${jobDetails}. Skills: ${skills}. Reviews: ${performanceReviews}. Location: ${workLocation}. Notes: ${notes}`;
+
+        resolve(summary);
+    })
+}
+
