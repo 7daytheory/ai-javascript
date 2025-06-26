@@ -3,6 +3,20 @@ Build AI Agents with Javascript
 
 ## Successfully generate employee data with AI and then upload them to a MongoDB database
 
+### Create Search Index
+```bash
+{
+  "fields": [
+    {
+      "numDimensions": 1536,
+      "path": "embedding",
+      "similarity": "cosine",
+      "type": "vector"
+    }
+  ]
+}
+```
+
 ```bash
 npm init -y //init package
 
