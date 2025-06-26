@@ -1,6 +1,8 @@
 # ai-javascript
 Build AI Agents with Javascript
 
+## Successfully generate employee data with AI and then upload them to a MongoDB database
+
 ```bash
 npm init -y //init package
 
